@@ -1,121 +1,220 @@
 :root {
-  --bg: #f5f7fb;
-  --card: #ffffff;
+  --bg: #f3f6fb;
+  --panel: #ffffff;
+  --border: #111827;
   --text: #0f172a;
   --muted: #64748b;
-  --border: #e2e8f0;
+  --good: #15803d;
+  --ok: #b45309;
+  --bad: #b91c1c;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
-  padding: 32px 16px;
+  font-family: Georgia, "Times New Roman", serif;
+  padding: 20px;
 }
 
-.page-title {
-  max-width: 720px;
-  margin: 0 auto 6px;
-  font-size: 32px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-}
-
-.subtitle {
-  max-width: 720px;
-  margin: 0 auto 18px;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.card {
-  max-width: 720px;
+.dashboard {
+  max-width: 1100px;
   margin: 0 auto;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 18px 18px 14px;
-  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
 }
 
-.row {
+.title {
+  margin: 0 0 14px;
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.panel {
+  background: var(--panel);
+  border: 2px solid var(--border);
+  border-radius: 0;
+  padding: 12px;
+}
+
+.panel h2,
+.panel h3 {
+  margin: 0 0 8px;
+  font-weight: 800;
+}
+
+.panel p {
+  margin: 6px 0;
+}
+
+.big-text {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.forecast-text {
+  font-size: 1.15rem;
+  min-height: 32px;
+}
+
+.top-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1.35fr 1.35fr 1.1fr;
+  grid-template-areas:
+    "time forecast forecast icon"
+    "temp forecast forecast icon";
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.time-box { grid-area: time; }
+.temp-box { grid-area: temp; min-height: 138px; }
+.forecast-box { grid-area: forecast; min-height: 210px; display: flex; flex-direction: column; justify-content: center; }
+.icon-box {
+  grid-area: icon;
+  min-height: 210px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
+  justify-content: center;
+  flex-direction: column;
+}
+.forecast-emoji {
+  font-size: 4rem;
+  line-height: 1;
+}
+.icon-caption {
+  margin-top: 10px;
+  font-weight: 700;
 }
 
-.row:last-of-type {
-  border-bottom: none;
+.metric-lines p {
+  font-size: 1.05rem;
 }
 
-.label {
-  font-weight: 700;          /* ✅ bold the variable names */
-  color: #111827;
+.status-banner {
+  margin-bottom: 10px;
+  padding: 14px 16px;
 }
 
-.value {
-  font-weight: 600;
-  color: var(--text);
+.status-banner p {
+  margin: 0;
+  font-size: 1.1rem;
 }
 
-.muted {
-  margin-top: 12px;
+.status-value {
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-left: 6px;
+  padding: 2px 10px;
+  border: 2px solid var(--border);
+  display: inline-block;
+}
+
+.status-good {
+  color: var(--good);
+  border-color: var(--good);
+}
+
+.status-ok {
+  color: var(--ok);
+  border-color: var(--ok);
+}
+
+.status-bad {
+  color: var(--bad);
+  border-color: var(--bad);
+}
+
+.description-box {
+  margin-bottom: 10px;
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+}
+
+.description-box p {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.rms-box,
+.wind-box {
+  min-height: 110px;
+}
+
+.muted-text {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 0.88rem;
 }
 
-/* Optional: make the status stand out slightly */
-#buoyStatus {
-  padding: 4px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: #f8fafc;
+.graph-box {
+  margin-bottom: 10px;
 }
 
-.history {
-  max-width: 720px;
-  margin: 16px auto 0;
-}
-
-.history-head {
+.graph-header {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 12px;
-  margin: 0 0 8px;
+  gap: 10px;
+  margin-bottom: 8px;
 }
 
-.history-head h2 {
+.graph-header h3 {
   margin: 0;
-  font-size: 16px;
-  font-weight: 800;
 }
 
-.history-sub {
-  color: var(--muted);
-  font-size: 12px;
+.graph-placeholder {
+  border: 2px dashed #9ca3af;
+  min-height: 220px;
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+  color: #475569;
+  background: #f8fafc;
+}
+
+.history-panel {
+  min-height: 220px;
+}
+
+.history-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.history-header h3 {
+  margin: 0;
 }
 
 .history-list {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden; /* makes rows look clean */
+  border: 2px solid var(--border);
+  min-height: 160px;
+  background: #fff;
+  max-height: 320px;
+  overflow-y: auto;
 }
 
 .history-row {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 10px;
-  padding: 10px 14px;
-  border-bottom: 1px solid var(--border);
-  font-size: 13px;
+  padding: 8px 10px;
+  border-bottom: 1px solid #d1d5db;
+  font-size: 0.95rem;
 }
 
 .history-row:last-child {
@@ -125,35 +224,71 @@ body {
 .history-left {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
 }
 
 .pill {
-  padding: 2px 8px;
   border: 1px solid var(--border);
-  border-radius: 999px;
-  background: #f8fafc;
+  padding: 1px 7px;
   font-weight: 700;
-  font-size: 12px;
-}
-
-.kv {
-  color: var(--muted);
-}
-
-.kv b {
-  color: var(--text);
+  font-size: 0.85rem;
+  text-transform: uppercase;
 }
 
 .history-time {
   color: var(--muted);
-  font-variant-numeric: tabular-nums;
   white-space: nowrap;
+  font-size: 0.85rem;
 }
 
 .history-empty {
-  padding: 12px 14px;
+  padding: 10px;
   color: var(--muted);
-  font-size: 13px;
+}
+
+.footer-status {
+  margin: 8px 0 0;
+  font-family: Arial, sans-serif;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .top-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "time time"
+      "temp forecast"
+      "icon icon";
+  }
+
+  .forecast-box,
+  .icon-box {
+    min-height: 140px;
+  }
+
+  .info-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  body {
+    padding: 12px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .top-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "time"
+      "temp"
+      "forecast"
+      "icon";
+  }
 }

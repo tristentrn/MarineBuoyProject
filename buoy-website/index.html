@@ -1,83 +1,97 @@
-<!--<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Buoy Dashboard</title>
-  <link rel="stylesheet" href="./styles.css" />
-</head>
-<body>
-  <main class="page">
-    <h1>Buoy Telemetry Dashboard</h1>
-    <p id="deviceLine">Device: buoy_01</p>
-
-    <section class="card">
-      <h2>Latest</h2>
-      <p id="statusText">Status: --</p>
-      <div id="latestBox"></div>
-    </section>
-
-    <section class="card">
-      <h2>Recent Logs</h2>
-      <div class="tableWrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Time</th><th>Final</th><th>Weather</th><th>Wave</th>
-              <th>IMU RMS</th><th>Wind</th><th>Gust</th><th>Confidence</th>
-            </tr>
-          </thead>
-          <tbody id="rowsBody"></tbody>
-        </table>
-      </div>
-    </section>
-  </main>
-
-  <script type="module" src="./app.js"></script>
-</body>
-</html>-->
-
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Marine Buoy Dashboard</title>
+  <title>Marine Buoy Monitor</title>
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <h1 class="page-title">Buoy Monitor</h1>
-  <p class="subtitle">Live status from Firebase Realtime Database</p>
+  <main class="dashboard">
+    <h1 class="title">Marine Buoy Monitor</h1>
 
-  <!-- main UI -->
-  <div class="card">
+    <!-- Top grid -->
+    <section class="top-grid">
+      <div class="panel time-box">
+        <h2>Time and Date</h2>
+        <p id="timeDateText" class="big-text">—</p>
+      </div>
 
-    <!--latest rows -->
-    <div class="row"><span class="label">Buoy Status</span><span id="buoyStatus" class="value">—</span></div>
-    <div class="row"><span class="label">Forecast</span><span id="weatherForecast" class="value">—</span></div>
-    <div class="row"><span class="label">Temp (°F)</span><span id="temperatureF" class="value">—</span></div>
-    <div class="row"><span class="label">Humidity (%)</span><span id="humidity" class="value">—</span></div>
-    <div class="row"><span class="label">Wind (mph)</span><span id="windMph" class="value">—</span></div>
-    <div class="row"><span class="label">Gust (mph)</span><span id="gustMph" class="value">—</span></div>
-    <div class="row"><span class="label">Wind Direction</span><span id="windDirection" class="value">—</span></div>
-    <div class="row"><span class="label">RMS</span><span id="rms" class="value">—</span></div>
-    <div class="row"><span class="label">Timestamp</span><span id="timestamp" class="value">—</span></div>
-    <div id="lastUpdated" class="muted">Not connected yet…</div>
-  </div>
+      <div class="panel temp-box">
+        <h2>Temperature and humidity:</h2>
+        <div class="metric-lines">
+          <p><strong>Temperature:</strong> <span id="temperatureF">—</span> °F</p>
+          <p><strong>Humidity:</strong> <span id="humidity">—</span> %</p>
+        </div>
+      </div>
 
-  <!--history logs/rows -->
-  <div class="history">
-    <div class="history-head">
-      <h2>History</h2>
-      <div class="history-sub">Most recent readings</div>
-    </div>
+      <div class="panel forecast-box">
+        <h2>Weather Forecast</h2>
+        <p id="weatherForecast" class="forecast-text">—</p>
+      </div>
 
-    <div id="historyList" class="history-list">
-      <div class="history-empty">Loading…</div>
-    </div>
-  </div>
+      <div class="panel icon-box">
+        <div id="forecastIcon" class="forecast-emoji">🌤️</div>
+        <p class="icon-caption">Forecast</p>
+      </div>
+    </section>
 
-  <!-- IMPORTANT -->
+    <!-- Buoy status -->
+    <section class="panel status-banner">
+      <p>
+        <strong>Buoy status:</strong>
+        <span id="buoyStatus" class="status-value">—</span>
+      </p>
+    </section>
+
+    <!-- Description -->
+    <section class="panel description-box">
+      <p id="statusDescription">
+        Based on Buoy Status, wave conditions will be described here for surfers.
+      </p>
+    </section>
+
+    <!-- RMS + Wind row -->
+    <section class="info-row">
+      <div class="panel rms-box">
+        <h3>RMS value</h3>
+        <p><strong>Wave Height Indicator:</strong> <span id="rms">—</span></p>
+        <p class="muted-text">Higher RMS generally means stronger/taller wave motion.</p>
+      </div>
+
+      <div class="panel wind-box">
+        <h3>Wind / Gust / Direction</h3>
+        <p><strong>Wind:</strong> <span id="windMph">—</span> mph</p>
+        <p><strong>Gust:</strong> <span id="gustMph">—</span> mph</p>
+        <p><strong>Direction:</strong> <span id="windDirection">—</span></p>
+      </div>
+    </section>
+
+    <!-- Graph placeholder -->
+    <section class="panel graph-box">
+      <div class="graph-header">
+        <h3>Wind Speed Pattern</h3>
+        <span class="muted-text">Live graph placeholder</span>
+      </div>
+      <div id="graphPlaceholder" class="graph-placeholder">
+        Graph area (you can later replace this with Chart.js)
+      </div>
+    </section>
+
+    <!-- History logs -->
+    <section class="panel history-panel">
+      <div class="history-header">
+        <h3>History logs</h3>
+        <span class="muted-text">Recent readings</span>
+      </div>
+      <div id="historyList" class="history-list">
+        <div class="history-empty">Loading...</div>
+      </div>
+    </section>
+
+    <p id="lastUpdated" class="footer-status">Not connected yet...</p>
+  </main>
+
   <script type="module" src="./app.js"></script>
 </body>
 </html>
