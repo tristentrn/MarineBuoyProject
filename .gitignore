@@ -1,0 +1,58 @@
+# -------------------------
+# OS / system files
+# -------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# -------------------------
+# VS Code editor files
+# -------------------------
+.vscode/
+*.code-workspace
+
+# -------------------------
+# Logs
+# -------------------------
+*.log
+
+# -------------------------
+# Environment / secrets
+# -------------------------
+.env
+.env.*
+!.env.example
+
+# -------------------------
+# Node / web app files (if your website uses npm)
+# -------------------------
+node_modules/
+dist/
+build/
+.cache/
+coverage/
+
+# -------------------------
+# Arduino / embedded build artifacts
+# -------------------------
+*.bin
+*.elf
+*.hex
+*.map
+*.lst
+
+# Temporary files
+*.tmp
+*.temp
+
+# -------------------------
+# Python (only if you use scripts later)
+# -------------------------
+__pycache__/
+*.pyc
+
+# -------------------------
+# Misc
+# -------------------------
+*.bak
+*.swp
