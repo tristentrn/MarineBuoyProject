@@ -1,0 +1,83 @@
+<!--<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buoy Dashboard</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="page">
+    <h1>Buoy Telemetry Dashboard</h1>
+    <p id="deviceLine">Device: buoy_01</p>
+
+    <section class="card">
+      <h2>Latest</h2>
+      <p id="statusText">Status: --</p>
+      <div id="latestBox"></div>
+    </section>
+
+    <section class="card">
+      <h2>Recent Logs</h2>
+      <div class="tableWrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th><th>Final</th><th>Weather</th><th>Wave</th>
+              <th>IMU RMS</th><th>Wind</th><th>Gust</th><th>Confidence</th>
+            </tr>
+          </thead>
+          <tbody id="rowsBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>-->
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Marine Buoy Dashboard</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <h1 class="page-title">Buoy Monitor</h1>
+  <p class="subtitle">Live status from Firebase Realtime Database</p>
+
+  <!-- main UI -->
+  <div class="card">
+
+    <!--latest rows -->
+    <div class="row"><span class="label">Buoy Status</span><span id="buoyStatus" class="value">—</span></div>
+    <div class="row"><span class="label">Forecast</span><span id="weatherForecast" class="value">—</span></div>
+    <div class="row"><span class="label">Temp (°F)</span><span id="temperatureF" class="value">—</span></div>
+    <div class="row"><span class="label">Humidity (%)</span><span id="humidity" class="value">—</span></div>
+    <div class="row"><span class="label">Wind (mph)</span><span id="windMph" class="value">—</span></div>
+    <div class="row"><span class="label">Gust (mph)</span><span id="gustMph" class="value">—</span></div>
+    <div class="row"><span class="label">Wind Direction</span><span id="windDirection" class="value">—</span></div>
+    <div class="row"><span class="label">RMS</span><span id="rms" class="value">—</span></div>
+    <div class="row"><span class="label">Timestamp</span><span id="timestamp" class="value">—</span></div>
+    <div id="lastUpdated" class="muted">Not connected yet…</div>
+  </div>
+
+  <!--history logs/rows -->
+  <div class="history">
+    <div class="history-head">
+      <h2>History</h2>
+      <div class="history-sub">Most recent readings</div>
+    </div>
+
+    <div id="historyList" class="history-list">
+      <div class="history-empty">Loading…</div>
+    </div>
+  </div>
+
+  <!-- IMPORTANT -->
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

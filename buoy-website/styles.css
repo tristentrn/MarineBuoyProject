@@ -1,0 +1,159 @@
+:root {
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 32px 16px;
+}
+
+.page-title {
+  max-width: 720px;
+  margin: 0 auto 6px;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  max-width: 720px;
+  margin: 0 auto 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.card {
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px 18px 14px;
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.row:last-of-type {
+  border-bottom: none;
+}
+
+.label {
+  font-weight: 700;          /* ✅ bold the variable names */
+  color: #111827;
+}
+
+.value {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.muted {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Optional: make the status stand out slightly */
+#buoyStatus {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #f8fafc;
+}
+
+.history {
+  max-width: 720px;
+  margin: 16px auto 0;
+}
+
+.history-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 8px;
+}
+
+.history-head h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.history-sub {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.history-list {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden; /* makes rows look clean */
+}
+
+.history-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.history-row:last-child {
+  border-bottom: none;
+}
+
+.history-left {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.pill {
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #f8fafc;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.kv {
+  color: var(--muted);
+}
+
+.kv b {
+  color: var(--text);
+}
+
+.history-time {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.history-empty {
+  padding: 12px 14px;
+  color: var(--muted);
+  font-size: 13px;
+}
