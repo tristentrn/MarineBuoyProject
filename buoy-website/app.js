@@ -103,6 +103,41 @@ if (window.Chart) {
 // These are small reusable functions to keep the code cleaner
 
 /**
+ * Updates the status image/icon on the right side of the buoy status panel.
+ * Uses local image files inside ./images/
+ */
+function updateStatusImage(status = "") {
+  const imgEl = document.getElementById("statusImage");
+  const labelEl = document.getElementById("statusImageLabel");
+  if (!imgEl) return;
+
+  const s = String(status).toLowerCase();
+
+  // Default (neutral)
+  let src = "./images/status-neutral.jpg";
+  let label = "Status";
+  let alt = "Buoy status icon";
+
+  if (s === "good") {
+    src = "./images/status-good.jpg";
+    label = "Good";
+    alt = "Good buoy status";
+  } else if (s === "ok") {
+    src = "./images/status-ok.jpg";
+    label = "OK";
+    alt = "OK buoy status";
+  } else if (s === "bad") {
+    src = "./images/status-bad.jpg";
+    label = "Bad";
+    alt = "Bad buoy status";
+  }
+
+  imgEl.src = src;
+  imgEl.alt = alt;
+  if (labelEl) labelEl.textContent = label;
+}
+
+/**
  * Convert forecast text into an emoji.
  * Example:
  * - "Chance Rain Showers" -> 🌧️
@@ -388,9 +423,10 @@ onValue(
       statusEl.textContent = status;
       applyStatusStyle(statusEl, status);
     }
-    
+
     // Apply background tint to cards based on status
     applyStatusTint(status);
+    updateStatusImage(status); 
 
     // ---------- Wave Description box ----------
     const statusDescriptionEl = document.getElementById("statusDescription");

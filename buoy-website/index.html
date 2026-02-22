@@ -35,13 +35,25 @@
 
     <!-- ===================== BUOY STATUS BANNER ===================== -->
     <section id="statusCard" class="panel status-card">
-      <div class="status-line">
-        <span class="status-label">Buoy Status</span>
-        <span id="buoyStatus" class="status-value">—</span>
-      </div>
+      <div class="status-card-layout">
+        <!-- Left side: status text + wave condition -->
+        <div class="status-content">
+          <div class="status-line">
+            <span class="status-label">Buoy status</span>
+            <span id="buoyStatus" class="status-value">—</span>
+          </div>
 
-      <p id="statusDescription" class="status-description">
-      <p id="statusDescription"> </p>
+          <p id="statusDescription" class="status-description">
+            Based on Buoy Status, wave conditions will be described here for surfers.
+          </p>
+        </div>
+
+        <!-- Right side: status image/icon -->
+        <div class="status-visual">
+          <!-- Option A: image file -->
+          <img id="statusImage" src="./images/status-neutral.png" alt="Buoy status icon" />
+        </div>
+      </div>
     </section>
 
     <!-- ===================== TOP GRID ===================== -->
