@@ -27,19 +27,14 @@
     </header>
 
     <!-- ===================== BUOY STATUS BANNER ===================== -->
-    <section class="panel status-banner">
-      <p>
-        <strong>Buoy status:</strong>
-        <!-- JS fills this and also applies color class -->
+    <section id="statusCard" class="panel status-card">
+      <div class="status-line">
+        <span class="status-label">Buoy status</span>
         <span id="buoyStatus" class="status-value">—</span>
-      </p>
-    </section>
+      </div>
 
-     <!-- Wave condition description under the status -->
-    <section class="panel description-box">
-      <p id="statusDescription">
-        Based on Buoy Status, wave conditions will be described here for surfers.
-      </p>
+      <p id="statusDescription" class="status-description">
+      <p id="statusDescription"> </p>
     </section>
 
     <!-- ===================== TOP GRID ===================== -->
@@ -49,55 +44,56 @@
         - Forecast emoji/icon box 
     -->
     <section class="top-grid">
-      <!-- Temperature + Humidity -->
-      <div class="panel temp-box">
+      <!-- Weather Forecast text -->
+      <div id="weatherCard" class="panel weather-card">
+        <div class="weather-left">
+          <h2>Weather Forecast</h2>
+          <p id="weatherForecast" class="forecast-text">—</p>
+        </div>
+
+        <div class="weather-right">
+          <div id="forecastIcon" class="forecast-emoji">🌤️</div>
+        </div>
+      </div>
+      
+      <!-- Temperature/ Humidity/ RMS (right side)-->
+      <div id="metricsCard" class="panel temp-box">
         <div class="metric-lines">
           <!-- JS fills in these span values -->
           <p><strong>Temperature:</strong> <span id="temperatureF">—</span> °F</p>
           <p><strong>Humidity:</strong> <span id="humidity">—</span> %</p>
           <p><strong>RMS:</strong> <span id="rms">—</span></p>
-          <p class="muted-text">Higher RMS generally means stronger/taller wave motion.</p>
         </div>
-      </div>
-
-      <!-- Weather Forecast text -->
-      <div class="panel forecast-box">
-        <h2>Weather Forecast</h2>
-        <!-- JS fills this with weatherForecast field -->
-        <p id="weatherForecast" class="forecast-text">—</p>
-      </div>
-
-      <!-- Forecast icon / emoji -->
-      <div class="panel icon-box">
-        <!-- JS changes this emoji based on forecast text -->
-        <div id="forecastIcon" class="forecast-emoji">🌤️</div>
-        <p class="icon-caption">Forecast</p>
+          <p class="muted-text">
+            Higher RMS generally means stronger/taller wave motion.
+          </p>
       </div>
     </section>
 
-    <!-- ===================== WIND DATA (NO BIG HEADER TITLES) ===================== -->
-    <!-- Wind box -->
-    <section class="panel wind-strip">
-      <div class="panel wind-box">
-        <p><strong>Wind:</strong> <span id="windMph">—</span> mph</p>
-        <p><strong>Gust:</strong> <span id="gustMph">—</span> mph</p>
-        <p><strong>Direction:</strong> <span id="windDirection">—</span></p>
-      </div>
-    </section>
+    <!-- ===================== WIND DATA Panel===================== -->
+    <!-- Wind data values -->
+    <section class="panel graph panel">
+      <div class="graph-layout">
+        <div class="wind-inline">
+          <h3>Wind Data</h3>
+          <p><strong>Wind:</strong> <span id="windMph">—</span> mph</p>
+          <p><strong>Gust:</strong> <span id="gustMph">—</span> mph</p>
+          <p><strong>Direction:</strong> <span id="windDirection">—</span></p>
+        </div>
 
-    <!-- ===================== WIND SPEED GRAPH ===================== -->
-     <!-- This panel shows a line chart of wind speeds over time using the past 10 history logs -->
-    <section class="panel graph-box">
-      <div class="graph-header">
-        <h3>Wind Speed Pattern</h3>
-        <span class="muted-text">Last 10 history logs</span>
-      </div>
+        <!-- Wind chart-->
+        <div class="graph side">
+          <div class="graph-header">
+            <h3>Wind Speed Pattern</h3>
+            <span class="muted-text">Last 10 history logs</span>
+          </div>
 
-      <!-- Chart.js draws into this canvas -->
-      <!-- JS (app.js) gets this by id="windChart" and renders/updates the chart -->
-      <!-- Chart container with fixed height to prevent resize loop -->
-      <div class="chart-wrap">
-        <canvas id="windChart" class="graph-canvas"></canvas>
+          <!-- Chart.js draws into this canvas -->
+          <!-- JS (app.js) gets this by id="windChart" and renders/updates the chart -->
+          <div class="chart-wrap">
+            <canvas id="windChart" class="graph-canvas"></canvas>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -118,8 +114,6 @@
     <p id="lastUpdated" class="footer-status">Not connected yet...</p>
   </main>
 
-  <!-- Load your JavaScript (module version for Firebase imports) -->
-  <script type="module" src="./app.js"></script>
   <!-- Chart.js library (loads first) -->
   <!-- This gives you the global "Chart" object used in app.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

@@ -160,6 +160,36 @@ function applyStatusStyle(statusEl, status = "") {
 }
 
 /**
+ * Apply light background tint to selected cards based on buoy status.
+ * Affects only status/weather/temp cards (not graph/history).
+ */
+function applyStatusTint(status = "") {
+  const tintTargets = [
+    document.getElementById("statusCard"),
+    document.getElementById("weatherCard"),
+    document.getElementById("metricsCard")
+  ];
+
+  // Remove old tint classes first
+  tintTargets.forEach((el) => {
+    if (!el) return;
+    el.classList.remove("tinted-good", "tinted-ok", "tinted-bad");
+  });
+
+  const s = String(status).toLowerCase();
+  let tintClass = "";
+  if (s === "good") tintClass = "tinted-good";
+  else if (s === "ok") tintClass = "tinted-ok";
+  else if (s === "bad") tintClass = "tinted-bad";
+
+  if (!tintClass) return;
+
+  tintTargets.forEach((el) => {
+    if (el) el.classList.add(tintClass);
+  });
+}
+
+/**
  * Convert date/time strings into a JS Date object for sorting.
  * Works with:
  * date = "2026-02-21"
@@ -358,6 +388,9 @@ onValue(
       statusEl.textContent = status;
       applyStatusStyle(statusEl, status);
     }
+    
+    // Apply background tint to cards based on status
+    applyStatusTint(status);
 
     // ---------- Wave Description box ----------
     const statusDescriptionEl = document.getElementById("statusDescription");
