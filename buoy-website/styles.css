@@ -1,12 +1,13 @@
 :root {
   --bg: #f3f6fb;
   --panel: #ffffff;
-  --border: #111827;
+  --border: #d8e0ea;   /* softer border */
   --text: #0f172a;
   --muted: #64748b;
   --good: #15803d;
   --ok: #b45309;
   --bad: #b91c1c;
+  --shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
 }
 
 * {
@@ -26,18 +27,47 @@ body {
   margin: 0 auto;
 }
 
+/* ===================== HEADER ===================== */
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
 .title {
-  margin: 0 0 14px;
+  margin: 0;
   font-size: 2.6rem;
   font-weight: 800;
   line-height: 1.05;
 }
 
+.header-datetime {
+  text-align: right;
+  padding-top: 4px;
+  font-family: Arial, sans-serif;
+}
+
+.header-time {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.header-date {
+  margin-top: 2px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* ===================== PANELS (less boxy) ===================== */
 .panel {
   background: var(--panel);
-  border: 2px solid var(--border);
-  border-radius: 0;
-  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 16px;  /* rounded corners */
+  padding: 14px;
+  box-shadow: var(--shadow);
 }
 
 .panel h2,
@@ -50,116 +80,118 @@ body {
   margin: 6px 0;
 }
 
-.big-text {
-  font-size: 1.2rem;
-  font-weight: 700;
-}
-
-.forecast-text {
-  font-size: 1.15rem;
-  min-height: 32px;
-}
-
-.top-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 1.35fr 1.35fr 1.1fr;
-  grid-template-areas:
-    "time forecast forecast icon"
-    "temp forecast forecast icon";
-  gap: 10px;
+/* ===================== STATUS ===================== */
+.status-banner {
   margin-bottom: 10px;
 }
 
-.time-box { grid-area: time; }
-.temp-box { grid-area: temp; min-height: 138px; }
-.forecast-box { grid-area: forecast; min-height: 210px; display: flex; flex-direction: column; justify-content: center; }
-.icon-box {
-  grid-area: icon;
-  min-height: 210px;
+.status-line {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  gap: 10px;
+  flex-wrap: wrap;
 }
-.forecast-emoji {
-  font-size: 4rem;
-  line-height: 1;
-}
-.icon-caption {
-  margin-top: 10px;
+
+.status-label {
+  font-size: 1rem;
   font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Bigger than "Buoy status" label */
+.status-value {
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  display: inline-block;
+  background: #fff;
+}
+
+.status-good { color: var(--good); }
+.status-ok { color: var(--ok); }
+.status-bad { color: var(--bad); }
+
+.description-box {
+  margin-bottom: 12px;
+}
+
+.description-box p {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.45;
+}
+
+/* ===================== TOP GRID ===================== */
+.top-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1.6fr 0.9fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.temp-box {
+  min-height: 120px;
 }
 
 .metric-lines p {
   font-size: 1.05rem;
 }
 
-.status-banner {
-  margin-bottom: 10px;
-  padding: 14px 16px;
+.forecast-box {
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.status-banner p {
-  margin: 0;
-  font-size: 1.1rem;
+.forecast-text {
+  font-size: 1.15rem;
+  min-height: 30px;
 }
 
-.status-value {
-  font-size: 1.1rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  margin-left: 6px;
-  padding: 2px 10px;
-  border: 2px solid var(--border);
-  display: inline-block;
-}
-
-.status-good {
-  color: var(--good);
-  border-color: var(--good);
-}
-
-.status-ok {
-  color: var(--ok);
-  border-color: var(--ok);
-}
-
-.status-bad {
-  color: var(--bad);
-  border-color: var(--bad);
-}
-
-.description-box {
-  margin-bottom: 10px;
-  min-height: 72px;
+.icon-box {
+  min-height: 120px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.description-box p {
-  margin: 0;
-  font-size: 1.05rem;
+.forecast-emoji {
+  font-size: 3.4rem;
+  line-height: 1;
 }
 
-.info-row {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.rms-box,
-.wind-box {
-  min-height: 110px;
-}
-
-.muted-text {
+.icon-caption {
+  margin-top: 8px;
+  font-weight: 700;
   color: var(--muted);
-  font-size: 0.88rem;
 }
 
+/* ===================== WIND STRIP (no old header box titles) ===================== */
+.wind-strip {
+  margin-bottom: 12px;
+}
+
+.wind-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.wind-grid p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* ===================== GRAPH ===================== */
 .graph-box {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .graph-header {
@@ -174,16 +206,28 @@ body {
   margin: 0;
 }
 
-.graph-placeholder {
-  border: 2px dashed #9ca3af;
-  min-height: 220px;
-  display: grid;
-  place-items: center;
-  font-size: 1.1rem;
-  color: #475569;
-  background: #f8fafc;
+.muted-text {
+  color: var(--muted);
+  font-size: 0.88rem;
 }
 
+.chart-wrap {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  background: #f8fafc;
+  border: 1px dashed #b8c4d5;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.graph-canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ===================== HISTORY ===================== */
 .history-panel {
   min-height: 220px;
 }
@@ -201,7 +245,8 @@ body {
 }
 
 .history-list {
-  border: 2px solid var(--border);
+  border: 1px solid var(--border);
+  border-radius: 12px;
   min-height: 160px;
   background: #fff;
   max-height: 320px;
@@ -212,9 +257,9 @@ body {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 10px;
-  padding: 8px 10px;
-  border-bottom: 1px solid #d1d5db;
-  font-size: 0.95rem;
+  padding: 10px 12px;
+  border-bottom: 1px solid #eef2f7;
+  font-size: 0.93rem;
 }
 
 .history-row:last-child {
@@ -230,16 +275,18 @@ body {
 
 .pill {
   border: 1px solid var(--border);
-  padding: 1px 7px;
+  border-radius: 999px;
+  padding: 2px 8px;
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
+  background: #f8fafc;
 }
 
 .history-time {
   color: var(--muted);
   white-space: nowrap;
-  font-size: 0.85rem;
+  font-size: 0.84rem;
 }
 
 .history-empty {
@@ -254,41 +301,29 @@ body {
   color: var(--muted);
 }
 
-/* Responsive */
+/* ===================== RESPONSIVE ===================== */
 @media (max-width: 900px) {
   .top-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      "time time"
-      "temp forecast"
-      "icon icon";
+    grid-template-columns: 1fr;
   }
 
-  .forecast-box,
-  .icon-box {
-    min-height: 140px;
-  }
-
-  .info-row {
+  .wind-grid {
     grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 560px) {
-  body {
-    padding: 12px;
+@media (max-width: 700px) {
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-datetime {
+    text-align: left;
+    padding-top: 0;
   }
 
   .title {
     font-size: 2rem;
-  }
-
-  .top-grid {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "time"
-      "temp"
-      "forecast"
-      "icon";
   }
 }
