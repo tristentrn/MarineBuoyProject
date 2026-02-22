@@ -3,7 +3,7 @@
   --panel: #ffffff;
   --border: #d8e0ea;
   --text: #0f172a;
-  --muted: #64748b;
+  --muted: #2c4364;
   --good: #28d11f;
   --ok: #e7c418;
   --bad: #cf1d1d;
@@ -23,7 +23,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: Arial, "Helvetica", 'Times New Roman';
+  font-family: Ranade, "Lora", 'Times New Roman';
   padding: 20px;
 }
 
@@ -98,10 +98,10 @@ body {
 }
 
 .status-label {
-  font-size: 1rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  color: var(--muted);
-  text-transform: uppercase;
+  color: var(--text);
+  /*text-transform: uppercase;*/
   letter-spacing: 0.04em;
 }
 
@@ -113,7 +113,7 @@ body {
   border: 2px solid currentColor;
   border-radius: 999px;
   display: inline-block;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgb(255, 255, 255);
 }
 
 .status-description {
