@@ -1,3 +1,9 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="./styles.css" />
+
 <!--goo goo ga ga-->
 <!doctype html>
 <html lang="en">
@@ -30,7 +36,7 @@
     <!-- ===================== BUOY STATUS BANNER ===================== -->
     <section id="statusCard" class="panel status-card">
       <div class="status-line">
-        <span class="status-label">Buoy status</span>
+        <span class="status-label">Buoy Status</span>
         <span id="buoyStatus" class="status-value">—</span>
       </div>
 
@@ -72,25 +78,25 @@
     </section>
 
     <!-- ===================== WIND DATA Panel===================== -->
-    <!-- Wind data values -->
-    <section class="panel graph panel">
-      <div class="graph-layout">
+    <section class="wind-graph-row">
+      <!-- Left: Wind panel -->
+      <div class="panel wind-panel">
         <div class="wind-inline">
           <h3>Wind Data</h3>
           <p><strong>Wind:</strong> <span id="windMph">—</span> mph</p>
           <p><strong>Gust:</strong> <span id="gustMph">—</span> mph</p>
           <p><strong>Direction:</strong> <span id="windDirection">—</span></p>
         </div>
+      </div>
 
-        <!-- Wind chart-->
-        <div class="graph side">
+      <!-- Right: Graph panel -->
+      <div class="panel graph-panel">
+        <div class="graph-side">
           <div class="graph-header">
             <h3>Wind Speed Pattern</h3>
             <span class="muted-text">Last 10 history logs</span>
           </div>
 
-          <!-- Chart.js draws into this canvas -->
-          <!-- JS (app.js) gets this by id="windChart" and renders/updates the chart -->
           <div class="chart-wrap">
             <canvas id="windChart" class="graph-canvas"></canvas>
           </div>
