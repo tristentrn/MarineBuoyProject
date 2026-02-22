@@ -4,15 +4,15 @@
   --border: #d8e0ea;
   --text: #0f172a;
   --muted: #64748b;
-  --good: #15803d;
-  --ok: #b45309;
-  --bad: #b91c1c;
+  --good: #28d11f;
+  --ok: #e7c418;
+  --bad: #cf1d1d;
   --shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
 
   /* Light tinted backgrounds (used for status/weather/temp cards) */
-  --good-tint: rgba(22, 163, 74, 0.10);
-  --ok-tint: rgba(245, 158, 11, 0.12);
-  --bad-tint: rgba(239, 68, 68, 0.10);
+  --good-tint: rgba(17, 217, 90, 0.452);
+  --ok-tint: rgba(240, 221, 13, 0.385);
+  --bad-tint: rgba(239, 68, 68, 0.334);
 }
 
 * {
@@ -23,7 +23,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Arial, "Helvetica", 'Times New Roman';
   padding: 20px;
 }
 
@@ -51,7 +51,7 @@ body {
 .header-datetime {
   text-align: right;
   padding-top: 4px;
-  font-family: Arial, sans-serif;
+  font-family: Times,'Times New Roman';
 }
 
 .header-time {
