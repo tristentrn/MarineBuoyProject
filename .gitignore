@@ -8,7 +8,7 @@ buoy_monitor/Secret.h
 !buoy-website/firebaseConfig.example.js
 
 # Website Firebase config
-buoy-website/firebaseConfig.js
+#buoy-website/firebaseConfig.js
 
 # Arduino build/cache folders 
 build/
