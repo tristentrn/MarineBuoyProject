@@ -1,0 +1,7 @@
+#pragma once
+
+#define WIFI_SSID "REPLACE_ME"
+#define WIFI_PASS "REPLACE_ME"
+
+#define FIREBASE_HOST "REPLACE_ME"
+//#define FIREBASE_AUTH "REPLACE_ME"

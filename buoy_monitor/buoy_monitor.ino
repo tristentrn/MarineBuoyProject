@@ -12,6 +12,7 @@
 #include "WeatherService.h"
 #include "BNO055Sensor.h"
 #include "TemperatureSensor.h"
+#include "Secret.h"
 
 /**
  * @file BuoyProject.ino
@@ -26,7 +27,7 @@
  *  6) Print telemetry every 10 seconds (throttled logging).
  *  7) Upload latest telemetry to Firebase.
  *  8) Append historical logs to Firebase at a lower rate.
- */
+ **/
 
 // ---------------- Module instances ----------------
 LedController leds(PIN_LED_RED, PIN_LED_YELLOW, PIN_LED_GREEN);

@@ -1,3 +1,23 @@
+# Secrets
+# Arduino secrets
+buoy_monitor/Secret.h
+
+# Keep template files tracked
+!buoy_monitor/Secrets.example.h
+!buoy_monitor/Secret.example.h
+!buoy-website/firebaseConfig.example.js
+
+# Website Firebase config
+buoy-website/firebaseConfig.js
+
+# Arduino build/cache folders 
+build/
+*.ino.bin
+*.ino.bootloader.bin
+*.ino.partitions.bin
+*.elf
+*.map
+
 # -------------------------
 # OS / system files
 # -------------------------

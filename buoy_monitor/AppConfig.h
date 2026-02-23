@@ -1,6 +1,7 @@
 #pragma once
 #include <Arduino.h>
 #include <DHT.h>
+#include "Secret.h"
 
 /**
  * @file Config.h
@@ -9,17 +10,11 @@
  * Keep all "magic numbers" here so you can change behavior without touching logic files.
  */
 
-// ---------------- Wi-Fi ----------------
-static const char* WIFI_SSID = "Tristen";
-static const char* WIFI_PASS = "4082256624";
 
 // ---------------- NWS API ----------------
 static const char* USER_AGENT = "UCI-Buoy-Demo (contact: jhuefner@uci.edu)";
 static constexpr float LAT = 33.5453f;
 static constexpr float LON = -117.7814f;
-
-// ---------------- Firebase ----------------
-static const char* FIREBASE_BASE = "https://marine-buoy-default-rtdb.firebaseio.com/";
 
 // ---------------- LED pins ----------------
 static constexpr int PIN_LED_RED    = 12;

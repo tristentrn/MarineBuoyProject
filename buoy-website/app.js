@@ -6,15 +6,7 @@ import { getDatabase, ref, onValue, query, limitToLast } from "https://www.gstat
 
 // ===================== FIREBASE CONFIG =====================
 // This connects your website to YOUR Firebase project
-const firebaseConfig = {
-  apiKey: "AIzaSyByUS64PQ41yKp1K003DbhaBJ4E_IM1lyo",
-  authDomain: "marine-buoy.firebaseapp.com",
-  databaseURL: "https://marine-buoy-default-rtdb.firebaseio.com",
-  projectId: "marine-buoy",
-  storageBucket: "marine-buoy.firebasestorage.app",
-  messagingSenderId: "126380799821",
-  appId: "1:126380799821:web:2ad49f7dfe0d3fb2f7a904"
-};
+ import { firebaseConfig } from "./firebaseConfig.js";
 
 // Create Firebase app instance + database instance
 const app = initializeApp(firebaseConfig);
