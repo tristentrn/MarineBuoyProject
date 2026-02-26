@@ -71,6 +71,34 @@ body {
   font-family: var(--font-body);
 }
 
+/* ===================== Demo video ===================== */
+.demo-video-panel {
+  margin-bottom: 12px;
+}
+
+.demo-video-header h2 {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.demo-video-link {
+  display: inline-block;
+  margin-bottom: 14px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-decoration: none;
+  color: #1d4ed8;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.demo-video-link:hover {
+  text-decoration: underline;
+}
+
 
 /* ===================== PANELS ===================== */
 .panel {
