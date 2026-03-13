@@ -312,6 +312,9 @@ bool WeatherService::fetchHourlyPeriod0Streamed(const String& hourlyUrl, Weather
   const char* ws = p0Doc["windSpeed"] | "";
   const char* wg = p0Doc["windGust"]  | "";
   const char* wd = p0Doc["windDirection"] | "";
+  float temp = p0Doc["temperature"] | NAN;
+  const char* tempUnit = p0Doc["temperatureUnit"] | "";
+  float rh = p0Doc["relativeHumidity"]["value"] | NAN;
 
   out.shortForecast = String(fc);
   out.windMph = parseWindMph(ws);
@@ -321,17 +324,46 @@ bool WeatherService::fetchHourlyPeriod0Streamed(const String& hourlyUrl, Weather
 
   out.windDirection = String(wd);   // make sure WeatherSnapshot includes this
 
+  // Temperature
+  if (!isnan(temp)) {
+    if (String(tempUnit) == "F") {
+      out.temperatureF = temp;
+      out.temperatureValid = true;
+    } else if (String(tempUnit) == "C") {
+      out.temperatureF = temp * 9.0f / 5.0f + 32.0f;
+      out.temperatureValid = true;
+    } else {
+      out.temperatureF = temp;
+      out.temperatureValid = true;
+    }
+  } else {
+    out.temperatureF = NAN;
+    out.temperatureValid = false;
+  }
+
+  // Humidity
+  if (!isnan(rh)) {
+    out.humidity = rh;
+    out.humidityValid = true;
+  } else {
+    out.humidity = NAN;
+    out.humidityValid = false;
+  }
+
   String lower = out.shortForecast;
   lower.toLowerCase();
   out.weatherStatus = classifyWeather(out.windMph, out.gustMph, lower);
 
-  Serial.printf("NWS(extract): fc=\"%s\", wind=%d, gust=%d, dir=%s => %s\n",
-                out.shortForecast.c_str(),
-                out.windMph,
-                out.gustMph,
-                out.windDirection.c_str(),
-                toString(out.weatherStatus));
-
+  Serial.printf(
+    "NWS(extract): fc=\"%s\", tempF=%.1f, humidity=%.1f, wind=%d, gust=%d, dir=%s => %s\n",
+    out.shortForecast.c_str(),
+    out.temperatureF,
+    out.humidity,
+    out.windMph,
+    out.gustMph,
+    out.windDirection.c_str(),
+    toString(out.weatherStatus)
+  );
   return true;
 }
 

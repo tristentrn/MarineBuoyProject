@@ -11,7 +11,7 @@
 #include "WifiManager.h"
 #include "WeatherService.h"
 #include "BNO055Sensor.h"
-#include "TemperatureSensor.h"
+//#include "TemperatureSensor.h"
 #include "Secret.h"
 
 /**
@@ -34,7 +34,7 @@ LedController leds(PIN_LED_RED, PIN_LED_YELLOW, PIN_LED_GREEN);
 WifiManager wifi(WIFI_SSID, WIFI_PASS, WIFI_RETRY_MS);
 WeatherService weather(USER_AGENT, LAT, LON);
 BNO055Sensor bnoSensor(BNO_ADDR);
-TemperatureSensor tempSensor(DHT_PIN, DHT_TYPE);
+//TemperatureSensor tempSensor(DHT_PIN, DHT_TYPE);
 
 // ---------------- Shared state ----------------
 WeatherSnapshot ws;
@@ -162,7 +162,7 @@ bool uploadLatestToFirebase(const String& dateStr,
   client.setInsecure(); // testing only
 
   HTTPClient https;
-  String url = String(FIREBASE_BASE) + "/buoy/latest.json";
+  String url = String("https://") + FIREBASE_HOST + "/buoy/latest.json";
 
   //Start request
   if (!https.begin(client, url)) {
@@ -190,7 +190,7 @@ bool uploadLatestToFirebase(const String& dateStr,
   forecast.trim();
   if (forecast.length() == 0) forecast = "NWS unavailable";
  // doc["weatherLabel"]    = ws.shortForecast;     // label shown in UI
-  doc["weatherForecast"] = ws.shortForecast;     // same string (keep both if you want)
+  doc["weatherForecast"] = forecast;     // same string (keep both if you want)
   
   //NWS wind fields
   doc["windMph"]         = ws.windMph;
@@ -235,7 +235,7 @@ bool appendLogToFirebase(const String& dateStr,
   client.setInsecure(); // testing only
 
   HTTPClient https;
-  String url = String(FIREBASE_BASE) + "/buoy/logs.json";
+  String url = String("https://") + FIREBASE_HOST + "/buoy/logs.json";
 
   if (!https.begin(client, url)) {
     Serial.println("Firebase logs begin() failed");
@@ -262,7 +262,7 @@ if (humidityValid) doc["humidity"]     = humidity; else doc["humidity"]     = nu
   if (forecast.length() == 0) forecast = "NWS unavailable";
 
   //doc["weatherLabel"]    = ws.shortForecast;
-  doc["weatherForecast"] = ws.shortForecast;
+  doc["weatherForecast"] = forecast;
   
   //Wind Fields
   doc["windMph"]         = ws.windMph;
@@ -337,8 +337,8 @@ void setup() {
   }
 
   // 6) DHT
-  tempSensor.begin();
-  Serial.println("DHT ready");
+  //tempSensor.begin();
+  //Serial.println("DHT ready");
 
   // 7) Timers
   uint32_t startMs = millis();
@@ -394,7 +394,7 @@ void loop() {
 
     if (bnoSensor.hasWindowResult()) {
       BNO055SensorReading m = bnoSensor.takeWindowResult();
-      TemperatureSensorReading t = tempSensor.read();
+      //TemperatureSensorReading t = tempSensor.read();
 
       // LED policy: wave-only for now
       RiskStatus waveStatus = classifyWaveFromRms(m.rms);
@@ -417,11 +417,19 @@ void loop() {
         Serial.print("Time=");
         Serial.print(timeBuf);
 
+        /*DHT temp sensor
         Serial.print("  TempF=");
         if (t.tempValid) Serial.print(t.tempF, 1); else Serial.print("NaN");
 
         Serial.print("  Humidity=");
-        if (t.humidityValid) Serial.print(t.humidity, 1); else Serial.print("NaN");
+        if (t.humidityValid) Serial.print(t.humidity, 1); else Serial.print("NaN");*/
+        Serial.print("  TempF=");
+        if (ws.temperatureValid) Serial.print(ws.temperatureF, 1);
+        else Serial.print("NaN");
+
+        Serial.print("  Humidity=");
+        if (ws.humidityValid) Serial.print(ws.humidity, 1);
+        else Serial.print("NaN");
 
         Serial.print("%  RMS=");
         Serial.print(m.rms, 4);
@@ -452,8 +460,8 @@ void loop() {
         bool upOk = uploadLatestToFirebase(
           dateStr,
           timeStr,
-          t.tempF, t.tempValid,
-          t.humidity, t.humidityValid,
+          ws.temperatureF, ws.temperatureValid,
+          ws.humidity, ws.humidityValid,
           m.rms,
           ws,
           buoyStatus
@@ -469,8 +477,8 @@ void loop() {
           bool logOk = appendLogToFirebase(
             dateStr,
             timeStr,
-            t.tempF, t.tempValid,
-            t.humidity, t.humidityValid,
+            ws.temperatureF, ws.temperatureValid,
+            ws.humidity, ws.humidityValid,
             m.rms,
             ws,
             buoyStatus

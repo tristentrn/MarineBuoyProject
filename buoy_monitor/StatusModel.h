@@ -34,8 +34,13 @@ inline RiskStatus classifyWaveFromRms(float rms) {
 struct WeatherSnapshot {
   int windMph = -1;       // Parsed wind speed (mph), -1 if unavailable
   int gustMph = -1;       // Parsed gust speed (mph), -1 if unavailable
-  String shortForecast;   // NWS shortForecast text
+  String shortForecast ="";   // NWS shortForecast text
   String windDirection;
   RiskStatus weatherStatus = RiskStatus::OK;   // Derived status classification
+  float temperatureF = NAN;
+  bool temperatureValid = false;
+
+  float humidity = NAN;
+  bool humidityValid = false;
 };
 
