@@ -43,4 +43,4 @@ MarineBuoyProject/
 ## Authors
 
 - **Tristen Tran**
-- **Shreeya Vachaani**
+- **Shreeya Vachhani**
